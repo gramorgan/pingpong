@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <table class="table">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Wins</th>
+            <th>Points Earned</th>
+            <th>Points Allowed</th>
+            <th>
+                <a href="{% url 'add-player' %}" class="btn btn-primary">Add Player</a>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for player in object_list %}
+            <tr>
+                <td>{{ player.name }}</td>
+                <td>{{ player.get_wins }}</td>
+                <td>{{ player.get_total_points_earned }}</td>
+                <td>{{ player.get_total_points_allowed }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
