@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <table class="table">
+    <table class="table text-center">
         <thead>
         <tr>
             <th>#</th>
@@ -10,17 +10,19 @@
             <th>Points Earned</th>
             <th>Points Allowed</th>
             <th>
-                <a href="{% url 'add-player' %}" class="btn btn-primary">Add Player</a>
+                <a href="{% url 'player-add' %}" class="btn btn-primary">Add Player</a>
             </th>
         </tr>
         </thead>
         <tbody>
-        {% for player in object_list %}
+        {% for player in players %}
             <tr>
+                <td>{{ forloop.counter }}</td>
                 <td>{{ player.name }}</td>
                 <td>{{ player.get_wins }}</td>
                 <td>{{ player.get_total_points_earned }}</td>
                 <td>{{ player.get_total_points_allowed }}</td>
+                <td><a href="{% url 'player-detail' pk=player.pk %}">Detail</a></td>
             </tr>
         {% endfor %}
         </tbody>

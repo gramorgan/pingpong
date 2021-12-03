@@ -13,10 +13,10 @@ class Player(models.Model):
         )
 
     def get_total_points_earned(self):
-        return self.participations.aggregate(Sum('points'))
+        return self.participations.aggregate(Sum('points'))['points__sum'] or 0
 
     def get_total_points_allowed(self):
-        return self.participations.aggregate(Sum('other_participation__points'))
+        return self.participations.aggregate(Sum('other_participation__points'))['other_participation__points__sum'] or 0
 
 
 class Game(models.Model):

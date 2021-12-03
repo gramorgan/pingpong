@@ -16,11 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from pingpong.views import HomeView, PlayersListView, PlayerCreateView
+from pingpong.views import HomeView, PlayersListView, PlayerCreateView, PlayerDetailView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', HomeView.as_view(), name='home'),
     path('players/', PlayersListView.as_view(), name='players'),
-    path('add-player/', PlayerCreateView.as_view(), name='add-player'),
+    path('player/<int:pk>', PlayerDetailView.as_view(), name='player-detail'),
+    path('add-player/', PlayerCreateView.as_view(), name='player-add'),
 ]
